@@ -1,9 +1,10 @@
+import gym
 from stable_baselines import HER, SAC
 from pick_and_place import FetchPickAndPlaceEnv
 
 import time
 
-env = FetchPickAndPlaceEnv()
+env = gym.make("FetchPickAndPlace-v1")
 
 goal_selection_strategy = 'future' # equivalent to GoalSelectionStrategy.FUTURE
 
