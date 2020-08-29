@@ -155,6 +155,7 @@ class FetchEnv(robot_env.RobotEnv):
             while np.linalg.norm(object_xpos - self.initial_gripper_xpos[:2]) < 0.1:
                 object_xpos = self.initial_gripper_xpos[:2] + self.np_random.uniform(-self.obj_range, self.obj_range, size=2)
 
+
             object_xpos[1] -= 0.2
 
             object_qpos = self.sim.data.get_joint_qpos('object0:joint')
@@ -182,8 +183,7 @@ class FetchEnv(robot_env.RobotEnv):
     def _is_success(self, achieved_goal, desired_goal):
         d = goal_distance(achieved_goal, desired_goal)
         success = (d < self.distance_threshold).astype(np.float32)
-        if success > 0.5:
-            print("Success")
+
         return success
 
     def _env_setup(self, initial_qpos):
