@@ -21,7 +21,7 @@ model = HER('MlpPolicy', env, SAC, n_sampled_goal=4,
             policy_kwargs=dict(layers=[256, 256, 256]),
             tensorboard_log="./OpenAI/")
 # Train the model
-model.learn(int(8e6))
+model.learn(int(4e6))
 
 model.save("./model2")
 
@@ -38,7 +38,7 @@ while(episodes < 50):
     action, _ = model.predict(obs)
     obs, reward, done, _ = env.step(action)
     env.render()
-    if done or step > 1000:
+    if done:
         obs = env.reset()
         episodes +=1
         if _['is_success']:
